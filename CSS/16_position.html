@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        /*
+        포지션: 박스의 위치가 어디인지 설정해놓는 것
+            position: static;
+            1. 디폴트 값이다.(position을 지정하지 않으면 static이다.)
+            2. HTML 기본 배치를 따른다.
+            3. 상대적 위치 조정이 (top, bottom, left, right)이 불가능하다. ex) 왼쪽에서 얼만큼 떨어트려 주세요 => 값은 right방향으로 줘야함 
+        */
+        .wrap1 > div {
+            width: 300px;
+            height: 100px;
+            border: 1px solid gray;
+            /* position: static;은 아래 메뉴가 동작하지 않는다. */
+            top: 50px; /* 위에서 50픽셀 떨어뜨리기 => 아래로 50px이동 */
+            left: 50px;   /*  왼쪽에서 50px 떨어뜨리기 => 오른쪽으로 50px 이동 */
+        }
+    </style>
+    <div class="wrap1">
+        <div>static BOX</div>
+    </div>
+
+
+    <style>
+        .wrap2 > div {
+            /* 
+                position: relative;
+                1.. HTML 기본 배치를 따른다.
+                2. 상대적 위치조정(top, bottom, left, right = 옵셋)이 가능하다.
+                2. 원래 자신의 위치를 기준으로 top, bottom, left, right가 동작 한다.
+            */
+            width: 300px;
+            height: 100px;
+            border: 1px solid gray;
+            position: relative; /* position이 static만 아니면 top, bottom,....등 적용 가능 */
+            top: 50px;
+            left: 50px;;
+        }
+
+    </style>
+    <div class="wrap2">
+        <div>relative BOX</div>
+    </div>          
+    
+
+    <style>
+        /*
+            position: absolute;
+            1. HTML 기본 배치를 따르지 않는다.
+            2. 상대적 위치 조정(top, bottom, left, right)이 가능하다.
+            3. 부모 요소의 position: static;이 아닌 경우 부모 요소를 기준으로 top, bottom, left, right가 동작한다.
+            4. 일반적으로 부모 요소가 position: relative; 를 가지고 자식 요소가 position: absolute;를 가진다.
+        */
+        .wrap3 {
+            margin-top: 100px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid crimson;
+            position: relative;
+        }
+        .wrap3 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            position: absolute;
+            top: 100px;
+            left: 100px; /* body태그 기준으로 떨어짐, 기준을 바꾸고 싶다면 부모에게 position을 줘야함 */
+        }
+    </style>
+    <div class="wrap3">
+        <div>absolute BOX</div> <!-- 내가 하고 싶은 곳에 박스를 두겠다?!, 기본흐름을 깨고 박스를 배치하고 싶을 때 사용하는 absolute -->
+    </div>
+
+
+    <style>
+        .wrap4 {
+            margin-top: 50px;
+            width: 300px;
+            height: 50px;
+            border: 1px solid gray;
+            position: relative; /* 부모가 relative라면 일반적으로 자식이 absolute임 */
+        }
+        .wrap4 > .btn_box {
+            width: 80px;
+            height: 40px;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: flex;
+        }
+        .wrap4 > .btn_box > div {
+            width: 50%;
+            height: 100%;/* 부모 너비, 높이 기준 */
+            border: 1px solid gray;
+        }
+        .wrap4 > .btn_box > div + div {
+            border-left: 0;
+        }
+
+    </style>
+    <div class="wrap4">
+        <div>증시</div>
+        <div class="btn_box">
+            <div>&lt;</div>
+            <div>&gt;</div>
+        </div>
+    </div>
+
+    <style>
+        /*
+            position: fixed;
+            1. HTML 문서의 특정 위치에 고정시키는 방식이다.
+            2. 상대적 위치 조정(top, bottom, left, right)이 가능하다.
+            3. 브라우저 화면 전체를 기준으로 top, bottom, left, right가 동작한다.
+            4. position: fixed; 된 영역은 다른 영역을 가린다. 
+        */
+        .wrap5 {
+            width: 100%;
+            height: 100px;
+            background-color: thistle;
+            position: fixed; /* fixed 특성은 본문을 가려버림 따라서 padding, margin값으로 여백을 그만큼 주어야 한다. */
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <div class="wrap5">
+        <div>fixed BOX</div>
+    </div>
+
+    <br><hr><br>
+
+    <!-- 연습 문제 -->
+    <style>
+        .wrap6 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            position: relative;
+        }
+
+        .wrap6 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            position: absolute;
+        }
+        .wrap6 > div.spring {
+            top: 10px;
+            left: 10px;
+        }
+        .wrap6 > div.summer {
+            top: 10px;
+            right: 10px;
+        }
+        .wrap6 > div.fall {
+            bottom: 10px;
+            left: 10px;
+        }
+        .wrap6 > div.winter {              
+            bottom: 10px;
+            right: 10px;
+        }
+          
+            
+        
+    </style>
+    <div class="wrap6">
+        <div class="spring">봄</div>
+        <div class="summer">여름</div>   
+        <div class="fall">가을</div>
+        <div class="winter">겨울</div>
+    </div>
+
+    <style>
+        /* .here은 부모가 된다 */
+        .here {
+            color: crimson;
+            font-weight: 900;
+            cursor: help;
+            position: relative;
+        }
+        /* ::before 또는 ::after는 자식이 된다 */
+        .here:hover::after {
+            content: attr(data-describe);
+            /* content: '무야호'; */
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 20px;
+            background-color: lightgoldenrodyellow;
+            border: 1px solid orange;
+            border-radius: 2px;
+        }
+    </style>
+    <p>
+        <span class="here" data-describe="풍선도움말">여기</span>를 선택하세요. <!-- data-변수명=  --> 
+    </p>
+
+    <!-- 태그에 작성된 속성을 attribute (속성)이라고 한다 
+         content: attr('data-describe') : 데이터 속성을 꺼내오시오 -->
+
+
+</body>
+</html>

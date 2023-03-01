@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* 1.float 
+            1) HTML 요소들의 기본 배치(상=> 하, 좌 => 우)를 벗어날 때 사용한다. 
+            2) 왼쪽이나 오른쪽 영역에 배치 시킬 수 있다.
+            3) 레이아웃(layout)을 잡기 위한 수단
+        */
+        .wrap1 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+        .wrap1 > .box1 {
+            float: left;
+        }
+        .wrap1 > .box2 {
+            float: right;
+        }
+
+    </style>
+    <div class="wrap1">
+        <div class="box1">BOX1</div>
+        <div class="box2">BOX2</div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum nunc eu elit dapibus ultricies. Nunc metus urna, blandit non elit eu, dictum interdum enim. Nunc cursus malesuada justo, cursus tristique sapien lacinia iaculis. Ut est enim, elementum quis posuere non, luctus sed diam. Cras sed facilisis turpis. Pellentesque mollis est sed ante semper bibendum. Aenean accumsan est eu odio condimentum, vel condimentum ante fermentum. Nam quis consequat erat, in ultricies augue. Donec hendrerit sagittis ex et sodales.
+    </div>
+    
+    <style>
+        /*
+            overflow 속성: 물잔에 물이 다 찼어 근데 또 더 따랐어 그게 바로 overflow => 내용이 영역보다 더 많을 때
+            1. 영역을 벗어난 컨텐츠에 적용되는 속성이다.
+            2. 영역을 벗어난 컨텐츠를 숨기거나 스크롤 처리한다.
+        */
+        .wrap2 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            display: inline-block;
+        }
+        .wrap2 > .box1 {
+            overflow: hidden;
+        }
+        .wrap2 > .box2 {
+            overflow-x: scroll;         /* 가로 방향의 스크롤이 생긴다 */
+            overflow-y: scroll;         /* 세로 방향의 스크롤이 생긴다 */
+        }
+        .wrap2 > .box3 {
+            overflow: scroll;           /* 가로 세로 방향의 스크롤이 생긴다 */
+        }
+
+    </style>
+    <div class="wrap2">
+        <div class="box1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum nunc eu elit dapibus ultricies. Nunc metus urna, blandit non elit eu, dictum interdum enim. Nunc cursus malesuada justo, cursus tristique sapien lacinia iaculis. Ut est enim, elementum quis posuere non, luctus sed diam. Cras sed facilisis turpis. Pellentesque mollis est sed ante semper bibendum. Aenean accumsan est eu odio condimentum, vel condimentum ante fermentum. Nam quis consequat erat, in ultricies augue. Donec hendrerit sagittis ex et sodales.</div>
+        <div class="box2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum nunc eu elit dapibus ultricies. Nunc metus urna, blandit non elit eu, dictum interdum enim. Nunc cursus malesuada justo, cursus tristique sapien lacinia iaculis. Ut est enim, elementum quis posuere non, luctus sed diam. Cras sed facilisis turpis. Pellentesque mollis est sed ante semper bibendum. Aenean accumsan est eu odio condimentum, vel condimentum ante fermentum. Nam quis consequat erat, in ultricies augue. Donec hendrerit sagittis ex et sodales.</div>
+        <div class="box3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum nunc eu elit dapibus ultricies. Nunc metus urna, blandit non elit eu, dictum interdum enim. Nunc cursus malesuada justo, cursus tristique sapien lacinia iaculis. Ut est enim, elementum quis posuere non, luctus sed diam. Cras sed facilisis turpis. Pellentesque mollis est sed ante semper bibendum. Aenean accumsan est eu odio condimentum, vel condimentum ante fermentum. Nam quis consequat erat, in ultricies augue. Donec hendrerit sagittis ex et sodales.</div>
+    </div>
+
+
+    <hr>
+
+    <style>
+        /*
+            블록을 좌우로 배치하는 방법 - 1 (one true layout)
+            1. 부모 요소에 overflow: hidden; 처리한다.
+            2. 자식 요소를 float: left; or float: right;(방향 상관 없으나 보통 left로 사용) 처리한다.
+        */
+        .wrap3 {
+            overflow: hidden;
+        }
+        .wrap3 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            float: left;
+        }
+
+    </style>
+    <div class="wrap3">
+        <div>BOX1</div>
+        <div>BOX2</div>
+    </div>
+
+    <style>
+        /*
+            블록을 좌우로 배치하는 방법 - 2
+            1. 부모 요소를 display: flex; 처리한다.
+            2. 그럼 끝ㅋ
+        */
+        div {
+            box-sizing: border-box;
+        }
+        .wrap4 {
+            display: flex;
+            flex-wrap: nowrap;  /* nowrap: 디폴트값, 부모 영역으로 자식들을 모두 모으는 방식, wrap: 자식들의 크기를 유지하기 때문에 부모 영역을 벗어날 수 있는 방식 */
+            flex-direction: row-reverse; /* 방향 거꾸로 만들어줌 12345 => 54321 */ /* row, row-reverse, column, column-reverse */
+            justify-content: space-around;     /*  양옆을 포함한 거리(여백)를 듬성듬성 띄워주는 태그 */  /* denter, space-between */      
+            width: 600px;
+            height: 100px;
+            background-color: antiquewhite;
+        }
+        .wrap4 > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+        }
+
+    </style>
+    <div class="wrap4">     <!-- flex는 부모에게 줘야함 자식한테 주면 안됨 -->
+        <div>BOX1</div>
+        <div>BOX2</div>
+        <div>BOX3</div>
+        <div>BOX4</div>
+        <div>BOX5</div>
+    </div>
+
+
+
+</body>
+</html>
