@@ -29,8 +29,8 @@
         console.log(box1);
 
     </script>
-    <div id="box1">나중에 나타난 구성요소는 인식되지 않는다.</div>       <!-- 태그(tag)보다 스크립트(script)가 위에(먼저) 있어야 한다. -->
-
+    <div id="box1">나중에 나타난 구성요소는 인식되지 않는다.</div>       
+    
     <!-- 태그(tag)를 먼저 스크립트(script)를 나중에 인식 -->
     <div id="box2" class="box2"></div>
     <script>
@@ -38,7 +38,6 @@
         // 1. 아이디
         var box2 = document.getElementById('box2');
         console.log(box2);
-
 
         // 2. 클래스 (* Js는 []가 배열))
         var box2 = document.getElementsByClassName('box2');
@@ -49,9 +48,9 @@
         console.log(div);
 
         // 4. 선택자(querySelector)             : querySelector 메소드를 사용하면 몇 개를 가져오던 변수로 사용한다.
-        var box2 = document.querySelector('#box2');          // # => Id로 인식 => 무조건 변수로 처리
+        var box2 = document.querySelector('#box2');          // # => Id로 인식 => queryselect 메소드를 이용하면 무조건 변수로 처리
         console.log(box2);
-        var box2 = document.querySelector('.box2');          // . => class로 인식 => queryselect 메소드를 이용하면 무조건 변수 처리(변수가 여러개라고 가정하더라도)
+        var box2 = document.querySelector('.box2');          // . => class로 인식 => queryselector 메소드를 이용하면 무조건 변수 처리(변수가 여러개라고 가정하더라도)
         console.log(box2);
         var div = document.querySelector('div');
         console.log(div);
@@ -59,7 +58,7 @@
         // 5. 선택자(querySelectorAll)          : querySelectorAll 메소드를 사용하면 하나를 사용해도 배열, 여러개를 사용해도 배열 
         var box2 = document.querySelectorAll('#box2');          
         console.log(box2);
-        var box2 = document.querySelectorAll('.box2');          // . => class로 인식 => queryselectAll 메소드를 이용하면 무조건 배열 처리(변수가 하나라고 가정하더라도)
+        var box2 = document.querySelectorAll('.box2');        // . => class로 인식 => queryselectAll 메소드를 이용하면 무조건 배열 처리(변수가 하나라고 가정하더라도)
         console.log(box2);
         var div = document.querySelectorAll('div');
         console.log(div);
