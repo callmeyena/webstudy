@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../resources/js/lib/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <div id="box1">BOX1</div>
+    <script>
+
+        // 1. text() == textContent
+        console.log($('#box1').text());         // 1번 .text : text 읽어오기
+        $('#box1').text('박스1');               // 2번 .text : 오버로딩(같은 메소드이름: text) : box1이라는 이름을 박스1로 바꿔달라
+
+    </script>
+
+    <div id="box2">
+        <p>BOX2</p>
+    </div>
+    <script>
+
+        // 2. html() == innerHTML
+        console.log($('#box2').html());         // 현재 요소 확인하기
+        $('#box2').html('<h1>BOX2</h1>');       // html 구성요소들 <p> BOX1 </P>를 <h1> 태그로 변경
+        console.log($('#box2').html());         // <h1>으로 바뀐거 console로 확인하기
+    </script>
+
+    <div id="box2_1">
+        <P>whats new</P>
+    </div>
+    <script>
+
+        // 2번 연습
+        console.log($('#box2_1').html());
+        $('#box2_1').html('<h2>whats new<h2>'); 
+        console.log($('#box2_1').html());       // <h1>으로 바뀐거 console로 확인하기
+       
+    </script>
+
+    <div id="box3">BOX3</div>
+    <script>
+
+        // 3. css() == style   : css라는 메소드를 가지고 css실행하기
+        $('#box3').css('color', '#c8c8c8')
+                  .css('font-size', '32px');        // 폰트 사이즈 32px로 변경
+        $('#box3').css({
+            'background-color': '#181818', 
+            'text-align': 'center'
+        });
+    </script>
+
+    <div>
+        <img id="img">
+    </div>
+    <script>
+        // attribute와 property는 항상 같이 공부하기 !
+        // 4. attribute == attr()
+        console.log($('#img').attr('id'));
+        $('#img').attr('alt', '이미지');
+        $('#img').attr('src', '../../images/fruit1.jpg');
+        $('#img').attr('width', '200px');
+
+    </script>
+
+    <div>
+        <a id="link">링크</a>
+    </div>
+    <script>
+
+        // 5. property == prop()
+        console.log($('#link').prop('id'));
+        $('#link').prop('href', 'https://www.naver.com');            // href의 속성을 임의의 주소값으로 수정해보겠다
+        $('#link').prop('target', '_blank');                         // naver가 기존창에서 열리던걸 새창으로 열리도록 수정
+    </script>
+
+    <div>
+        <ul id="menu">
+            <li id="kimchi">김치</li>
+        </ul>
+    </div>
+    <script>
+
+        /*
+            1. 부모-자식 관계로 추가하기
+                1) 부모.prepend(자식)   : 첫 번째 자식으로 추가하기
+                2) 부모.append(자식)    : 마지막 자식으로 추가하기  | 압도적으로 많이 씀
+                3) 자식.prependTo(부모) : 첫 번째 자식으로 추가하기
+                4) 자식.appendTo(부모)  : 마지막 자식으로 추가하기  | 압도적으로 많이 씀
+        */
+       var menu = $('#menu');
+       menu.prepend('<li id="cheese">치즈</li>');
+       menu.append('<li id="pizza">피자</li>');     // jQuery에서 id(attribute)를 쓸 때는 .attri , text를 넣어줄 때는 .text 사용
+       menu.prepend($('<li>').attr('id', 'beef').text('소고기'));       // = menu.prepend('<li id="cheese">치즈</li>'); 와 같다
+       menu.append($('<li>').attr('id', 'pork').text('돼지고기'));
+
+        $('<li id="americano">아메리카노</li>').prependTo(menu);
+        $('<li id="latte">라떼</li>').appendTo(menu);
+        $('<li>').attr('id', 'chicken').text('치킨').prependTo(menu);
+        $('<li>').attr('id', 'hamburger').text('햄버거').appendTo(menu);
+
+        /*  
+            2. 형제 관계로 추가하기
+                1) 형제.before(형제)    : 이전 형제로 추가하기 => 내 앞에 형제를 추가하겠다
+                2) 형제.after(형제)     : 다음 형제로 추가하기 => 내 다음에 형제를 추가하겠다 
+        */
+       $('#kimchi').before('<li id="ramen">라면</li>');
+       $('#kimchi').after($('<li>').attr('id', 'rice').text('공기밥'));
+    </script>
+
+    <div>
+        <ul id="movies">
+            <li id="terminator">터미네이터</li>
+            <li id="avatar">아바타</li>
+            <li id="alien">에일리언</li>
+        </ul>
+    </div>
+    <script>
+
+        // 1. 특정 요소만 제거하기
+        $('#terminator').remove();
+
+        // 2. 모든 하위 요소 제거하기
+        $('#movies').empty();               // #movies 자체는 삭제되지 않고 남는다. #movies의 하위요소들만 모두 삭제 될 뿐!
+    </script>
+
+    
+    
+</body>
+</html>
